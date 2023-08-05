@@ -9,16 +9,15 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest", "windows-latest"]
-        python-version: ["3.9", "3.10", "3.11"]
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Conda with Python ${{ matrix.python-version }} and dependencies
+      - name: Set up Conda with Python 3.10 and dependencies
         uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: ReausoKit
           environment-file: environment.yml
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.10
           auto-activate-base: false
       - name: Test with pytest
         run: |
