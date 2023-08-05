@@ -8,7 +8,7 @@ from unittest.mock import MagicMock, patch
 import numpy as np
 from parameterized import parameterized
 
-from util.BitArray import ByteChunkSize, array_to_bit_string, BitArray
+from rkit.bitwise.BitArray import ByteChunkSize, array_to_bit_string, BitArray
 
 
 class ArrayToBitStringTest(TestCase):
@@ -308,7 +308,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c) for ((a, b, _, _), c) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_string__no_indices_no_space__returns_string_representation(
             self,
             array_size,
@@ -343,7 +343,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c) for ((a, _, b, _), c) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_string__no_indices_with_space__returns_string_representation_with_byte_chunks(
             self,
             array_size,
@@ -380,7 +380,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d) for ((a, b, c), d) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_string__with_indices_no_space__returns_indexed_string_representation(
             self,
             array_size,
@@ -418,7 +418,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d) for ((a, b, c), d) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_string__with_indices_with_space__returns_indexed_string_representation_with_byte_chunks(
             self,
             array_size,
@@ -505,7 +505,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d) for ((a, b, c, _, _, _), d) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_formatted_string__default_parameters__returns_expected_formatted_string_representation(
             self,
             array_size,
@@ -543,7 +543,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d, e) for ((a, b, c, d), e) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_formatted_string__with_indices__returns_expected_formatted_string_representation(
             self,
             array_size,
@@ -586,7 +586,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d) for ((a, b, _, _, _, _), c, d) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_formatted_string__invalid_bytes_in_row__raises_value_error(
             self,
             array_size,
@@ -618,7 +618,7 @@ class BitArrayTest(TestCase):
     parameters = [(a, b, c, d) for ((a, b, _, c, _, _), d) in list(parameters)]
 
     @parameterized.expand(parameters)
-    @patch('util.BitArray.array_to_bit_string')
+    @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_formatted_string__without_header__returns_expected_formatted_string_representation(
             self,
             array_size,
