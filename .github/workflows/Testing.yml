@@ -19,7 +19,7 @@ jobs:
           activate-environment: ReausoKit
           environment-file: environment.yml
           #python-version: ${{ matrix.python-version }}
-          auto-activate-base: false
+          auto-activate-base: True
       - name: Test with pytest
         run: |
           conda activate ReausoKit
