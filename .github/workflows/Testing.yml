@@ -13,14 +13,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Edit environment.yml file
+        shell: bash -l {0}
+        run: |
+          sed -i 's/  - python=3.10//' environment.yml
       - name: Set up Conda with Python ${{ matrix.python-version }} and dependencies
         uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: ReausoKit
           environment-file: environment.yml
-          #python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
           auto-activate-base: True
-      - shell: bash -l {0}
+      - name: Print Conda Information
+        shell: bash -l {0}
         run: |
           conda info
           conda list
