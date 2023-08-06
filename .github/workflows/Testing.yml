@@ -22,5 +22,6 @@ jobs:
           auto-activate-base: false
       - name: Test with pytest
         run: |
+          conda activate ReausoKit
           conda install pytest
-          python -m pytest
+          pytest
