@@ -162,45 +162,6 @@ class BitArray:
         return array_to_bit_string(array=self._array, byte_size=self._byte_size,
                                    start_index=start_index, end_index=end_index, with_space=with_space)
 
-    '''def as_formatted_string(self, start_index: int = 0, end_index: int | None = None, bytes_in_row: int = 10,
-                            with_header=True):
-        end_index = self._size if end_index is None else end_index
-        bits_with_spaces = array_to_bit_string(array=self._array, byte_size=self._byte_size,
-                                               start_index=start_index, end_index=end_index, with_space=True) + ' '
-
-        num_start_spaces = start_index % 8
-        num_start_bits = 8 - num_start_spaces
-        num_start_bits = 0 if num_start_bits == 8 else num_start_bits
-        num_bytes_to_write = ceil((end_index - start_index - num_start_bits) / 8)
-        num_bytes_to_write += 1 if num_start_bits > 0 else 0
-        first_byte_index = floor(start_index / 8)
-
-        i = 0
-        msg = ''
-        while i < num_bytes_to_write:
-            # add header
-            if with_header:
-                for j in range(i, min(i + bytes_in_row, num_bytes_to_write)):
-                    byte_index = first_byte_index + j
-                    msg += str(byte_index) + ''.join(' ' for _ in range(9 - len(str(byte_index))))
-                msg = msg[:-1] + '\n'
-
-            # add formatted bits
-            if i == 0:
-                msg += ''.join(' ' for _ in range(num_start_spaces))
-                msg += bits_with_spaces[start_index:
-                                        min(i + bytes_in_row, num_bytes_to_write) * 9 - num_start_spaces + start_index]
-            else:
-                
-                msg += bits_with_spaces[i * 9 - num_start_spaces:
-                                        min(i + bytes_in_row, num_bytes_to_write) * 9 - num_start_spaces]
-            msg = msg[:-1] + '\n'
-
-            # add to i
-            i = min(i + bytes_in_row, num_bytes_to_write)
-
-        return msg[:-1]'''
-
     def as_formatted_string(self, start_index: int = 0, end_index: int | None = None, bytes_in_row: int = 10,
                             with_header=True):
         # check if parameter values are valid
