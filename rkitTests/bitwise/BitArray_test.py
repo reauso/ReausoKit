@@ -159,7 +159,6 @@ class BitArrayTest(TestCase):
     data_provider = BitArrayTestData()
 
     # TODO implement
-    # TODO add messages
 
     @parameterized.expand(data_provider.as_string__no_indices_no_space__returns_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
@@ -191,7 +190,11 @@ class BitArrayTest(TestCase):
             end_index=array_size,
             with_space=False,
         )
-        self.assertEqual(expected, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}"
+                   f"\nexpected: {expected}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
         data_provider.as_string__no_indices_with_space__returns_string_with_byte_chunks_data)
@@ -224,7 +227,11 @@ class BitArrayTest(TestCase):
             end_index=array_size,
             with_space=True,
         )
-        self.assertEqual(expected, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}"
+                   f"\nexpected: {expected}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
         data_provider.as_string__with_indices_no_space__returns_indexed_string_data)
@@ -258,7 +265,11 @@ class BitArrayTest(TestCase):
             end_index=array_size if indices[1] is None else indices[1],
             with_space=False,
         )
-        self.assertEqual(expected, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, indices: {indices}"
+                   f"\nexpected: {expected}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
         data_provider.as_string__with_indices_with_space__returns_indexed_string_with_byte_chunks_data)
@@ -292,7 +303,11 @@ class BitArrayTest(TestCase):
             end_index=array_size if indices[1] is None else indices[1],
             with_space=True,
         )
-        self.assertEqual(expected, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, indices: {indices}"
+                   f"\nexpected: {expected}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(data_provider.as_formatted_string__default_parameters__returns_expected_formatted_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
@@ -325,7 +340,12 @@ class BitArrayTest(TestCase):
             end_index=array_size,
             with_space=False,
         )
-        self.assertEqual(formatted_string, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, "
+                   f"array_to_bit_string_return_value: {array_to_bit_string_return_value}"
+                   f"\nexpected: {formatted_string}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(formatted_string, actual, msg=message)
 
     @parameterized.expand(data_provider.as_formatted_string__with_indices__returns_expected_formatted_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
@@ -359,7 +379,13 @@ class BitArrayTest(TestCase):
             end_index=array_size if indices[1] is None else indices[1],
             with_space=False,
         )
-        self.assertEqual(formatted_string, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, "
+                   f"array_to_bit_string_return_value: {array_to_bit_string_return_value}, "
+                   f"indices: {indices}"
+                   f"\nexpected: {formatted_string}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(formatted_string, actual, msg=message)
 
     @parameterized.expand(
         data_provider.as_formatted_string__changed_bytes_in_row__returns_expected_formatted_string_data)
@@ -394,7 +420,13 @@ class BitArrayTest(TestCase):
             end_index=array_size,
             with_space=False,
         )
-        self.assertEqual(formatted_string, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, "
+                   f"array_to_bit_string_return_value: {array_to_bit_string_return_value}, "
+                   f"bytes_in_row: {bytes_in_row}"
+                   f"\nexpected: {formatted_string}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(formatted_string, actual, msg=message)
 
     @parameterized.expand(data_provider.as_formatted_string__invalid_bytes_in_row__raises_value_error_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
@@ -456,13 +488,18 @@ class BitArrayTest(TestCase):
             end_index=array_size,
             with_space=False,
         )
-        self.assertEqual(formatted_string, actual)
+        message = (f"The actual value is different from the expected value with parameters: "
+                   f"data id: {data_id}, array size: {array_size}, byte_size: {byte_size}, "
+                   f"array_to_bit_string_return_value: {array_to_bit_string_return_value}"
+                   f"\nexpected: {formatted_string}"
+                   f"\nactual  : {actual}")
+        self.assertEqual(formatted_string, actual, msg=message)
 
     # TODO remove
     @unittest.skip
     def test_temp(self):
         print('----------------TEMP------------------')
-        # print(str(np.random.randint(2, size=400))[1: -1].replace(' ', '').replace('\n', ''))
+        print(str(np.random.randint(2, size=779))[1: -1].replace(' ', '').replace('\n', ''))
 
         # pairwise
         a = [1, 2]
@@ -471,7 +508,7 @@ class BitArrayTest(TestCase):
         # print(list(itertools.product([('h', 'j')], c.items())))
         # print(list(zip(a, b, c)))
 
-        max_value = 64
+        max_value = 779
         pairs = [(random.randrange(-max_value + 1, max_value), random.randrange(-max_value + 1, max_value)) for _ in
                  range(20)]
         pairs = [(min(a, b), max(a, b)) for (a, b) in pairs]
