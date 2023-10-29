@@ -168,13 +168,18 @@ class BitArray:
         if bytes_in_row < 1:
             raise ValueError('The bytes_in_row minimum is 1. A value smaller than 1 is not allowed!')
 
+        # if end index is None set the corresponding int value
         end_index = self._size if end_index is None else end_index
+
+        # array to string
         bits = array_to_bit_string(array=self._array, byte_size=self._byte_size,
                                                start_index=start_index, end_index=end_index, with_space=False)
 
+        # indices to positive values
         start_index = start_index if start_index >= 0 else self._size + start_index
         end_index = end_index if end_index >= 0 else self._size + end_index
 
+        # necessary values to format bit string
         bits_to_show = end_index - start_index
         max_bits_per_row = bytes_in_row * 8
         padding_front = start_index % 8
@@ -183,12 +188,13 @@ class BitArray:
         num_total_bytes += 1 if num_start_bits > 0 else 0
         first_byte_index = floor(start_index / 8)
 
-        msg = ''
+        # container for formatted string
+        formatted_bits = ''
 
         current_byte_index = first_byte_index
         current_bit_index = start_index
 
-        num_rows = ceil(num_total_bytes / bytes_in_row)
+        num_rows = ceil(num_total_bytes / bytes_in_row) 
         for row in range(num_rows):
             bytes_in_current_row = min(num_total_bytes - (row * bytes_in_row), bytes_in_row)
             bits_in_current_row = min(bits_to_show, max_bits_per_row - padding_front) if row == 0 else \
@@ -200,31 +206,16 @@ class BitArray:
                 header_row = [str(i) + ''.join(' ' for _ in range(8 - len(str(i)))) for i in header_row]
                 header_row = ' '.join(i for i in header_row) + '\n'
 
-                msg += header_row
+                formatted_bits += header_row
 
             # add formatted bits
             bit_row = ''.join(' ' for _ in range(padding_front)) if row == 0 else ''
             bit_row += bits[current_bit_index: current_bit_index + bits_in_current_row]
             bit_row = ' '.join(bit_row[i: i + 8] for i in range(0, len(bit_row), 8)) + '\n'
-            msg += bit_row
+            formatted_bits += bit_row
 
             # update state
             current_byte_index += bytes_in_current_row
             current_bit_index += bits_in_current_row
 
-        return msg[:-1]
-
-
-'''
-num_bits_left = len(bits)
-offset = 8 - (start_index % 8)
-spaced_bits = bits[:offset]
-num_bits_left -= offset
-
-while num_bits_left > 0:
-    spaced_bits += ' '
-    start = len(bits) - num_bits_left
-    spaced_bits += bits[start: start + 8]
-    num_bits_left -= 8
-bits = spaced_bits
-'''
+        return formatted_bits[:-1]

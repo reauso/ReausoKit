@@ -837,7 +837,7 @@ class BitArrayTestData:
         ]
 
     @property
-    def as_string__no_indices_no_space__returns_string_data(self):
+    def as_string__default_parameter__returns_string_data(self):
         """
         Gets the parameter data for the specified test.
         :return: [(id, array_size, expected string without spaces, ByteChunkSize), ...]
@@ -849,7 +849,7 @@ class BitArrayTestData:
         return parameters
 
     @property
-    def as_string__no_indices_with_space__returns_string_with_byte_chunks_data(self):
+    def as_string__spaced__returns_string_with_byte_chunks_data(self):
         """
         Gets the parameter data for the specified test.
         :return: [(id, array_length, expected string with spaces, ByteChunkSize), ...]
@@ -861,7 +861,7 @@ class BitArrayTestData:
         return parameters
 
     @property
-    def as_string__with_indices_no_space__returns_indexed_string_data(self):
+    def as_string__with_indices__returns_indexed_string_data(self):
         """
         Gets the parameter data for the specified test.
         :return: [(id, array_size, expected string without spaces, One indices pair, ByteChunkSize), ...]
@@ -879,7 +879,7 @@ class BitArrayTestData:
         return parameters
 
     @property
-    def as_string__with_indices_with_space__returns_indexed_string_with_byte_chunks_data(self):
+    def as_string__with_indices_and_spaced__returns_indexed_string_with_byte_chunks_data(self):
         """
         Gets the parameter data for the specified test.
         :return: [(id, array_size, expected string with spaces, One indices pair, ByteChunkSize), ...]

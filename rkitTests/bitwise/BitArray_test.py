@@ -160,7 +160,7 @@ class BitArrayTest(TestCase):
 
     # TODO implement
 
-    @parameterized.expand(data_provider.as_string__no_indices_no_space__returns_string_data)
+    @parameterized.expand(data_provider.as_string__default_parameter__returns_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
     def test_as_string__no_indices_no_space__returns_string(
             self,
@@ -197,9 +197,9 @@ class BitArrayTest(TestCase):
         self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
-        data_provider.as_string__no_indices_with_space__returns_string_with_byte_chunks_data)
+        data_provider.as_string__spaced__returns_string_with_byte_chunks_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
-    def test_as_string__no_indices_with_space__returns_string_with_byte_chunks(
+    def test_as_string__spaced__returns_string_with_byte_chunks(
             self,
             data_id,
             array_size,
@@ -234,9 +234,9 @@ class BitArrayTest(TestCase):
         self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
-        data_provider.as_string__with_indices_no_space__returns_indexed_string_data)
+        data_provider.as_string__with_indices__returns_indexed_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
-    def test_as_string__with_indices_no_space__returns_indexed_string(
+    def test_as_string__with_indices__returns_indexed_string(
             self,
             data_id,
             array_size,
@@ -272,9 +272,9 @@ class BitArrayTest(TestCase):
         self.assertEqual(expected, actual, msg=message)
 
     @parameterized.expand(
-        data_provider.as_string__with_indices_with_space__returns_indexed_string_with_byte_chunks_data)
+        data_provider.as_string__with_indices_and_spaced__returns_indexed_string_with_byte_chunks_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
-    def test_as_string__with_indices_with_space__returns_indexed_string_with_byte_chunks(
+    def test_as_string__with_indices_and_spaced__returns_indexed_string_with_byte_chunks(
             self,
             data_id,
             array_size,
@@ -308,6 +308,8 @@ class BitArrayTest(TestCase):
                    f"\nexpected: {expected}"
                    f"\nactual  : {actual}")
         self.assertEqual(expected, actual, msg=message)
+
+    # TODO check as_string out of bounds
 
     @parameterized.expand(data_provider.as_formatted_string__default_parameters__returns_expected_formatted_string_data)
     @patch('rkit.bitwise.BitArray.array_to_bit_string')
@@ -494,6 +496,8 @@ class BitArrayTest(TestCase):
                    f"\nexpected: {formatted_string}"
                    f"\nactual  : {actual}")
         self.assertEqual(formatted_string, actual, msg=message)
+
+    # TODO check as_formatted_string out of bounds
 
     # TODO remove
     @unittest.skip
