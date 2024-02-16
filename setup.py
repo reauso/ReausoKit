@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.0.0'
+VERSION = '0.0.1'
 DESCRIPTION = 'Some util functionality for Python Projects.'
 
 setup(
@@ -15,4 +15,11 @@ setup(
         'numpy',
         'parameterized',
     ],
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: MIT License',
+        'Operating System :: OS Independent',
+    ],
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
 )
