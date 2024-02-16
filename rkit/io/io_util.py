@@ -6,7 +6,9 @@ import glob
 from typing import List
 
 
-def files_in_directory(directory_path: os.PathLike | str, file_patterns: str = None, recursive: bool = False) -> List:
+def files_in_directory(directory_path: os.PathLike | str,
+                       file_patterns: str | List = None,
+                       recursive: bool = False) -> List:
     """
     Returns all files from a specific directory.
     :param directory_path: Path to the directory.
