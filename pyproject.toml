@@ -7,7 +7,7 @@ packages = ["rkit/"]
 
 [project]
 name = "ReausoKit"
-version = "0.0.1"
+version = "0.0.2"
 description = "Some util functionality for Python Projects."
 authors = [
     { name = "Rene Ebertowski", email = "r.ebertowski@gmx.de" }
