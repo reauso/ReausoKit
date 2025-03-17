@@ -16,7 +16,9 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "numpy"
+    "numpy",
+    "bidict~=0.23.1",
+    "sortedcontainers~=2.4.0"
 ]
 
 [project.urls]
