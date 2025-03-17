@@ -3,34 +3,25 @@ name: Testing
 on: [push]
 
 jobs:
-  miniconda:
-    name: Miniconda ${{ matrix.os }} Python ${{ matrix.python-version }}
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ["ubuntu-latest", "windows-latest"]
-        python-version: ["3.9", "3.10", "3.11"]
-
+        os: [ubuntu-latest, windows-latest]
+        environment: [ test ]
     steps:
-      - uses: actions/checkout@v3
-      - name: Edit environment.yml file
-        shell: bash -l {0}
-        run: |
-          sed -i 's/  - python=3.10//' environment.yml
-      - name: Set up Conda with Python ${{ matrix.python-version }} and dependencies
-        uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/checkout@v4
+      - name: Setup environment ${{ matrix.environment }}
+        uses: prefix-dev/setup-pixi@v0.8.3
         with:
-          activate-environment: ReausoKit
-          environment-file: environment.yml
-          python-version: ${{ matrix.python-version }}
-          auto-activate-base: True
-      - name: Print Conda Information
+          environments: ${{ matrix.environment }}
+          cache: false
+      - name: Print Pixi Information
         shell: bash -l {0}
         run: |
-          conda info
-          conda list
-      - name: Test with pytest
+          pixi info
+          pixi list
+      - name: Test with pixi run test
         shell: bash -l {0}
         run: |
-          conda install pytest
-          pytest
+          pixi run test
